@@ -19,9 +19,30 @@
         // Function to be called when button is clicked
         function checkMaths() {
             var answer = document.getElementById("answer").value;
-            console.log(answer); // Do something with the entered answer
-            alert("Answer checked!"); // Display a message box for demonstration
-            // Add your logic here to actually check the math and display result
+            // alert("Prompt: " + answer);
+            fetch("/api/getID?id=" + answer)
+                .then(response => {
+                    return response.text()
+                })
+                .then(text => {
+                    if (text == "Not Found") {
+                        alert("The answer was not found in the database.")
+                    } else {
+                        var data = text.split("|")
+                        // alert(data)
+                        var info = "1 = the first question box on the page\n";
+                        var ind = 0;
+                        
+
+                        for (obj in data) {
+                            var net = ind + 1;
+                            info += net + ": " + data[ind] + "\n";
+                            ind += 1;
+                        }
+
+                        alert(info)
+                    }
+                })
         }
     </script>
 </body>
