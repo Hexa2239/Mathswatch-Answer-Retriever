@@ -63,5 +63,5 @@ def getAnswer():
                 return "Not Found", 200
 
 
-app.run(port=40020)
+app.run(port=40020, host="0.0.0.0")
 
