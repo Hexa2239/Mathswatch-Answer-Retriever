@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathswatch Answer Grabber</title>
+</head>
+<body>
+    <h1>Mathswatch Answer Grabber</h1>
+
+    <!-- Input textarea for user to enter their answer -->
+    <label for="answer">Enter your question id</label>
+    <textarea id="answer" rows="1" cols="30"></textarea>
+
+    <!-- Button to call the checkMaths() function when clicked -->
+    <button onclick="checkMaths()">Get Answer</button>
+
+    <script>
+        // Function to be called when button is clicked
+        function checkMaths() {
+            var answer = document.getElementById("answer").value;
+            console.log(answer); // Do something with the entered answer
+            alert("Answer checked!"); // Display a message box for demonstration
+            // Add your logic here to actually check the math and display result
+        }
+    </script>
+</body>
+</html>
