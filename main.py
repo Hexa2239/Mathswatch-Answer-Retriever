@@ -19,7 +19,7 @@ app = Flask("Mathswatch Data Grabber")
 
 @app.get("/")
 def get():
-    return send_file("./public/index.html"), 200
+    return send_file("./public/v2.html"), 200
 
 @app.get("/api/getID")
 def getAnswer():

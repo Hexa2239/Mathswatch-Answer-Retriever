@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathswatch Answer Grabber</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        input {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mathswatch Answer Grabber</h1>
+        <input type="text" id="questionId" placeholder="Enter question ID">
+        <button onclick="getAnswer()">Get Answer</button>
+    </div>
+
+    <script>
+        function getAnswer() {
+            var answer = document.getElementById("questionId").value;
+            // alert("Prompt: " + answer);
+            fetch("/api/getID?id=" + answer)
+                .then(response => {
+                    return response.text()
+                })
+                .then(text => {
+                    if (text == "Not Found") {
+                        alert("The answer was not found in the database.")
+                    } else {
+                        var data = text.split("|")
+                        // alert(data)
+                        var info = "1 = the first question box on the page\n";
+                        var ind = 0;
+                        
+
+                        for (obj in data) {
+                            var net = ind + 1;
+                            info += net + ": " + data[ind] + "\n";
+                            ind += 1;
+                        }
+
+                        alert(info)
+                    }
+                })
+        }
+    </script>
+</body>
+</html>
